@@ -5,6 +5,7 @@ ruby '2.2.4'
 gem 'rails', '4.2.6'
 gem 'rack-cors'
 gem 'carrierwave'
+gem 'cloudinary'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
