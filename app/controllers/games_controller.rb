@@ -12,6 +12,11 @@ class GamesController < ApplicationController
   def show
     @category = Category.find(params[:category_id])
     @game = @category.games.find(params[:id])
+
+    respond_to do |f|
+      f.html
+      f.json { render json: { category: @category,game: @game } }
+    end
   end
 
   def create
@@ -24,4 +29,10 @@ class GamesController < ApplicationController
       render @game
     end
   end
+
+  private
+
+     def game_params
+        params.require( :game ).permit( :name, :image, :description, :category_id )
+     end
 end
