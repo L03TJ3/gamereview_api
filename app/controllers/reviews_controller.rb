@@ -1,10 +1,23 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @game = Game.find(params[:game_id])
+    @reviews = @game.reviews
+
+    respond_to do |f|
+      f.html
+      f.json { render json: { game: @game, review: @reviews } }
+    end
   end
 
   def show
-    @review = Review.find(params[:games_id])
+    @game = Game.find(params[:game_id])
+    @review = @game.reviews.find(params[:id])
+
+    respond_to do |f|
+      f.html
+      f.json { render json: { game: @game, review: @review } }
+    end
+
   end
 
   def create
